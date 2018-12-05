@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SmartHouseWeb.Models.Saunat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SaunaNimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaunanTila)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaunaTavoiteLampotila)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaunaNykyLampotila)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaunaNimi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaunanTila)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaunaTavoiteLampotila)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaunaNykyLampotila)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SaunaId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SaunaId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SaunaId })
+        </td>
+    </tr>
+}
+
+</table>
