@@ -91,6 +91,92 @@ namespace SmartHouseWeb.Controllers
             return View(talot);
         }
 
+        // GET: TaloLampo/LampoON/5
+        public ActionResult LampoOn(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Talot talolampo = db.Talot.Find(id);
+            if (talolampo == null)
+            {
+                return HttpNotFound();
+            }
+
+            TaloViewModel lampo = new TaloViewModel();
+            lampo.TaloId = talolampo.TaloId;
+            //lampo.Huone = talolampo.Huone;
+            //lampo.HuoneNykyLampo = talolampo.HuoneNykyLampo;
+            //lampo.HuoneTavoiteLampo = talolampo.HuoneTavoiteLampo;
+            lampo.LampoOn = true;
+            lampo.LampoOff = false;
+            //lampo.LampoKirjattu = talolampo.LampoKirjattu;
+
+            return View(lampo);
+        }
+
+        // POST: TaloLampo/LampoON/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LampoON(TaloViewModel model)
+        {
+            Talot lampo = db.Talot.Find(model.TaloId);
+            lampo.TaloId = model.TaloId;
+            //lampo.Huone = model.Huone;
+            lampo.LampoOn = true;
+            lampo.LampoOff = false;
+            //lampo.HuoneNykyLampo = model.HuoneNykyLampo;
+            //lampo.HuoneTavoiteLampo = model.HuoneTavoiteLampo;
+            //lampo.LampoKirjattu = DateTime.Now;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: TaloLampo/LampoOFF/5
+        public ActionResult LampoOFF(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Talot talolampo = db.Talot.Find(id);
+            if (talolampo == null)
+            {
+                return HttpNotFound();
+            }
+
+            TaloViewModel lampo = new TaloViewModel();
+            lampo.TaloId = talolampo.TaloId;
+            //lampo.Huone = talolampo.Huone;
+            //lampo.HuoneNykyLampo = talolampo.HuoneNykyLampo;
+            //lampo.HuoneTavoiteLampo = talolampo.HuoneTavoiteLampo;
+            lampo.LampoOn = false;
+            lampo.LampoOff = true;
+            //lampo.LampoKirjattu = talolampo.LampoKirjattu;
+
+            return View(lampo);
+        }
+
+        // POST: TaloLampo/LampoOFF/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LampoOFF(TaloViewModel model)
+        {
+            Talot lampo = db.Talot.Find(model.TaloId);
+            lampo.TaloId = model.TaloId;
+            //lampo.Huone = model.Huone;
+            lampo.LampoOn = false;
+            lampo.LampoOff = true;
+            //lampo.HuoneNykyLampo = model.HuoneNykyLampo;
+            //lampo.HuoneTavoiteLampo = model.HuoneTavoiteLampo;
+            //lampo.LampoKirjattu = DateTime.Now;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         // GET: Talo/Delete/5
         public ActionResult Delete(int? id)
         {
