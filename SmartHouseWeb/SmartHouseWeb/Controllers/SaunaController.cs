@@ -24,16 +24,36 @@ namespace SmartHouseWeb.Controllers
         // GET: Sauna/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            SaunaViewModel model = new SaunaViewModel();
+            AlytaloEntities entities = new AlytaloEntities();
+
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                Saunat taloSauna = db.Saunat.Find(id);
+                if (taloSauna == null)
+
+                {
+                    return HttpNotFound();
+                }
+
+                Saunat saunadetail = entities.Saunat.Find(taloSauna.SaunaId);
+
+                SaunaViewModel sauna = new SaunaViewModel();
+                sauna.SaunaId = saunadetail.SaunaId;                
+                sauna.SaunaNimi = saunadetail.SaunaNimi;
+                sauna.SaunaTavoiteLampotila = saunadetail.SaunaTavoiteLampotila;
+                sauna.SaunaNykyLampotila = saunadetail.SaunaNykyLampotila;                
+                sauna.SaunanTila = saunadetail.SaunanTila;
+
+                model = sauna;
+
             }
-            Saunat saunat = db.Saunat.Find(id);
-            if (saunat == null)
+            finally
             {
-                return HttpNotFound();
+                entities.Dispose();
             }
-            return View(saunat);
+
+            return View(model);
         }
 
         // GET: Sauna/Create
