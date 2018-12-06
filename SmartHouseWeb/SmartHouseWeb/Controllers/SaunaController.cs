@@ -66,12 +66,22 @@ namespace SmartHouseWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saunat saunat = db.Saunat.Find(id);
-            if (saunat == null)
+            Saunat taloSauna = db.Saunat.Find(id);
+            if (taloSauna == null)
             {
                 return HttpNotFound();
             }
-            return View(saunat);
+
+            SaunaViewModel sauna = new SaunaViewModel();
+            sauna.SaunaId = taloSauna.SaunaId;           
+            sauna.SaunaNimi = taloSauna.SaunaNimi;
+            sauna.SaunaTavoiteLampotila = taloSauna.SaunaTavoiteLampotila;
+            sauna.SaunaNykyLampotila = taloSauna.SaunaNykyLampotila;
+            
+
+            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
+
+            return View(sauna);
         }
 
         // POST: Sauna/Edit/5
@@ -79,16 +89,20 @@ namespace SmartHouseWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SaunaId,SaunaNimi,SaunanTila,SaunaTavoiteLampotila,SaunaNykyLampotila")] Saunat saunat)
+        public ActionResult Edit(SaunaViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(saunat).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(saunat);
-        }
+            Saunat sauna = db.Saunat.Find(model.SaunaId);            
+            sauna.SaunaNimi = model.SaunaNimi;
+            sauna.SaunaTavoiteLampotila = model.SaunaTavoiteLampotila;
+            sauna.SaunaNykyLampotila = model.SaunaNykyLampotila;
+           
+
+            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }//edit
 
         // GET: TaloSauna/SaunaOn/5
         public ActionResult SaunaOn(int? id)
