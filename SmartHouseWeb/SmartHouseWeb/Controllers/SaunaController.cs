@@ -39,7 +39,13 @@ namespace SmartHouseWeb.Controllers
         // GET: Sauna/Create
         public ActionResult Create()
         {
-            return View();
+            AlytaloEntities db = new AlytaloEntities();
+
+            SaunaViewModel model = new SaunaViewModel();
+
+            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", null);
+
+            return View(model);
         }
 
         // POST: Sauna/Create
@@ -47,17 +53,30 @@ namespace SmartHouseWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SaunaId,SaunaNimi,SaunanTila,SaunaTavoiteLampotila,SaunaNykyLampotila")] Saunat saunat)
+        public ActionResult Create(SaunaViewModel model)
         {
-            if (ModelState.IsValid)
+            Saunat sauna = new Saunat();
+            sauna.SaunaId = model.SaunaId;            
+            sauna.SaunaNimi = model.SaunaNimi;                           
+            sauna.SaunaTavoiteLampotila = model.SaunaTavoiteLampotila;
+            sauna.SaunaNykyLampotila = model.SaunaNykyLampotila;
+            //sauna.SaunanTila = model.SaunanTila;
+
+            db.Saunat.Add(sauna);
+
+            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", null);
+
+            try
             {
-                db.Saunat.Add(saunat);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
 
-            return View(saunat);
-        }
+            catch (Exception ex)
+            {
+            }
+
+            return RedirectToAction("Index");
+        }//create*/;
 
         // GET: Sauna/Edit/5
         public ActionResult Edit(int? id)
