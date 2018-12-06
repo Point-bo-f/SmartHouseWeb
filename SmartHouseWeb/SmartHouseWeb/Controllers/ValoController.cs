@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SmartHouseWeb.Models;
+using SmartHouseWeb.ViewModels;
 
 namespace SmartHouseWeb.Controllers
 {
@@ -89,6 +90,60 @@ namespace SmartHouseWeb.Controllers
             return View(valot);
         }
 
+        // GET: TaloValo/LightsOff/5
+        public ActionResult LightsOff(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Valot Valot = db.Valot.Find(id);
+            if (Valot == null)
+            {
+                return HttpNotFound();
+            }
+
+            ValoViewModel valo = new ValoViewModel();
+            valo.ValoId = Valot.ValoId;
+            valo.Huone = Valot.Huone;
+            //valo.ValaisinType = Valot.ValaisinType;
+            //valo.Lamppu_ID = Valot.Lamppu_ID;
+            valo.Valo33 = false;
+            valo.Valo66 = false;
+            valo.Valo100 = false;
+            valo.ValoTilaOff = true;
+            //valo.ValoOn33 = DateTime.Now;
+            //valo.ValoOn66 = DateTime.Now;
+            //valo.ValoOn100 = DateTime.Now;
+
+            return View(valo);
+        }
+
+        // POST: TaloValo/LightsOff/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LightsOff(ValoViewModel model)
+        {
+            Valot valo = db.Valot.Find(model.ValoId);
+            valo.Huone = model.Huone;
+            //valo.ValaisinType = model.ValaisinType;
+            //valo.Lamppu_ID = model.Lamppu_ID;
+            valo.Valo33 = false;
+            valo.Valo66 = false;
+            valo.Valo100 = false;
+            valo.ValoTilaOff = true;
+            //valo.ValoOn33 = DateTime.Now;
+            //valo.ValoOn66 = DateTime.Now;
+            //valo.ValoOn100 = DateTime.Now;
+            //valo.ValoOff = DateTime.Now;
+
+            ViewBag.Huone = new SelectList((from tv in db.Valot select new { Valo_ID = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
+            //ViewBag.ValaisinTYpe = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "ValaisinType", null);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }//
         // GET: Valo/Delete/5
         public ActionResult Delete(int? id)
         {

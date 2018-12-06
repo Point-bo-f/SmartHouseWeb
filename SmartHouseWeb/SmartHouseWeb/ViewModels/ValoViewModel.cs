@@ -13,5 +13,6 @@ namespace SmartHouseWeb.ViewModels
         public bool Valo33 { get; set; }
         public bool Valo66 { get; set; }
         public bool Valo100 { get; set; }
+        public bool ValoTilaOff { get;  set; }
     }
 }

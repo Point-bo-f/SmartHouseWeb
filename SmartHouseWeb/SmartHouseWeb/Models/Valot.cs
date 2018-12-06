@@ -20,5 +20,9 @@ namespace SmartHouseWeb.Models
         public Nullable<bool> ValoOn33 { get; set; }
         public Nullable<bool> ValoOn66 { get; set; }
         public Nullable<bool> ValoOn100 { get; set; }
+        public bool Valo33 { get; internal set; }
+        public bool Valo66 { get; internal set; }
+        public bool Valo100 { get; internal set; }
+        public bool ValoTilaOff { get; internal set; }
     }
 }
