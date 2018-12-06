@@ -105,13 +105,10 @@ namespace SmartHouseWeb.Controllers
             }
 
             TaloViewModel lampo = new TaloViewModel();
-            lampo.TaloId = talolampo.TaloId;
-            //lampo.Huone = talolampo.Huone;
-            //lampo.HuoneNykyLampo = talolampo.HuoneNykyLampo;
-            //lampo.HuoneTavoiteLampo = talolampo.HuoneTavoiteLampo;
+            lampo.TaloId = talolampo.TaloId;            
             lampo.LampoOn = true;
             lampo.LampoOff = false;
-            //lampo.LampoKirjattu = talolampo.LampoKirjattu;
+           
 
             return View(lampo);
         }
@@ -122,13 +119,10 @@ namespace SmartHouseWeb.Controllers
         public ActionResult LampoON(TaloViewModel model)
         {
             Talot lampo = db.Talot.Find(model.TaloId);
-            lampo.TaloId = model.TaloId;
-            //lampo.Huone = model.Huone;
+            lampo.TaloId = model.TaloId;            
             lampo.LampoOn = true;
             lampo.LampoOff = false;
-            //lampo.HuoneNykyLampo = model.HuoneNykyLampo;
-            //lampo.HuoneTavoiteLampo = model.HuoneTavoiteLampo;
-            //lampo.LampoKirjattu = DateTime.Now;
+            
 
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -148,13 +142,10 @@ namespace SmartHouseWeb.Controllers
             }
 
             TaloViewModel lampo = new TaloViewModel();
-            lampo.TaloId = talolampo.TaloId;
-            //lampo.Huone = talolampo.Huone;
-            //lampo.HuoneNykyLampo = talolampo.HuoneNykyLampo;
-            //lampo.HuoneTavoiteLampo = talolampo.HuoneTavoiteLampo;
+            lampo.TaloId = talolampo.TaloId;           
             lampo.LampoOn = false;
             lampo.LampoOff = true;
-            //lampo.LampoKirjattu = talolampo.LampoKirjattu;
+            
 
             return View(lampo);
         }
@@ -165,13 +156,10 @@ namespace SmartHouseWeb.Controllers
         public ActionResult LampoOFF(TaloViewModel model)
         {
             Talot lampo = db.Talot.Find(model.TaloId);
-            lampo.TaloId = model.TaloId;
-            //lampo.Huone = model.Huone;
+            lampo.TaloId = model.TaloId;           
             lampo.LampoOn = false;
             lampo.LampoOff = true;
-            //lampo.HuoneNykyLampo = model.HuoneNykyLampo;
-            //lampo.HuoneTavoiteLampo = model.HuoneTavoiteLampo;
-            //lampo.LampoKirjattu = DateTime.Now;
+           
 
             db.SaveChanges();
             return RedirectToAction("Index");

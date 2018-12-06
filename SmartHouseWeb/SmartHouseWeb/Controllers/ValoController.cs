@@ -105,16 +105,12 @@ namespace SmartHouseWeb.Controllers
 
             ValoViewModel valo = new ValoViewModel();
             valo.ValoId = Valot.ValoId;
-            valo.Huone = Valot.Huone;
-            //valo.ValaisinType = Valot.ValaisinType;
-            //valo.Lamppu_ID = Valot.Lamppu_ID;
+            valo.Huone = Valot.Huone;            
             valo.Valo33 = false;
             valo.Valo66 = false;
             valo.Valo100 = false;
             valo.ValoTilaOff = true;
-            //valo.ValoOn33 = DateTime.Now;
-            //valo.ValoOn66 = DateTime.Now;
-            //valo.ValoOn100 = DateTime.Now;
+            
 
             return View(valo);
         }
@@ -125,17 +121,12 @@ namespace SmartHouseWeb.Controllers
         public ActionResult LightsOff(ValoViewModel model)
         {
             Valot valo = db.Valot.Find(model.ValoId);
-            valo.Huone = model.Huone;
-            //valo.ValaisinType = model.ValaisinType;
-            //valo.Lamppu_ID = model.Lamppu_ID;
+            valo.Huone = model.Huone;            
             valo.Valo33 = false;
             valo.Valo66 = false;
             valo.Valo100 = false;
             valo.ValoTilaOff = true;
-            //valo.ValoOn33 = DateTime.Now;
-            //valo.ValoOn66 = DateTime.Now;
-            //valo.ValoOn100 = DateTime.Now;
-            //valo.ValoOff = DateTime.Now;
+            
 
             ViewBag.Huone = new SelectList((from tv in db.Valot select new { Valo_ID = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
             //ViewBag.ValaisinTYpe = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "ValaisinType", null);
@@ -160,20 +151,15 @@ namespace SmartHouseWeb.Controllers
 
             ValoViewModel valo = new ValoViewModel();
             valo.ValoId = talovalo.ValoId;
-            valo.Huone = talovalo.Huone;
-            //valo.ValaisinType = talovalo.ValaisinType;
-            //valo.Lamppu_ID = talovalo.Lamppu_ID;
+            valo.Huone = talovalo.Huone;            
             valo.Valo33 = true;
             valo.Valo66 = false;
             valo.Valo100 = false;
             valo.ValoTilaOff = false;
-            //valo.ValoOn33 = talovalo.ValoOn33;
-            //valo.ValoOn66 = talovalo.ValoOn66;
-            //valo.ValoOn100 = talovalo.ValoOn100;
-            //valo.ValoOff = talovalo.ValoOff;
+            
 
             ViewBag.Huone = new SelectList((from tv in db.Valot select new { ValoId = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
-            //ViewBag.ValaisinTYpe = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "ValaisinType", null);
+           
 
             return View(valo);
         }
@@ -184,17 +170,12 @@ namespace SmartHouseWeb.Controllers
         public ActionResult Light33(ValoViewModel model)
         {
             Valot valo = db.Valot.Find(model.ValoId);
-            valo.Huone = model.Huone;
-            //valo.ValaisinType = model.ValaisinType;
-            //valo.Lamppu_ID = model.Lamppu_ID;
+            valo.Huone = model.Huone;            
             valo.Valo33 = true;
             valo.Valo66 = false;
             valo.Valo100 = false;
             valo.ValoTilaOff = false;
-            //valo.ValoOn33 = DateTime.Now;
-            //valo.ValoOn66 = DateTime.Now;
-            //valo.ValoOn100 = DateTime.Now;
-            //valo.ValoOff = DateTime.Now;
+            
 
             ViewBag.Huone = new SelectList((from tv in db.Valot select new { ValoId = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
             //ViewBag.ValaisinType = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "ValaisinType", null);
@@ -219,20 +200,15 @@ namespace SmartHouseWeb.Controllers
 
             ValoViewModel valo = new ValoViewModel();
             valo.ValoId = talovalo.ValoId;
-            valo.Huone = talovalo.Huone;
-            //valo.ValaisinType = talovalo.ValaisinType;
-            //valo.Lamppu_ID = talovalo.Lamppu_ID;
+            valo.Huone = talovalo.Huone;            
             valo.Valo33 = false;
             valo.Valo66 = true;
             valo.Valo100 = false;
             valo.ValoTilaOff = false;
-            //valo.ValoOn33 = talovalo.ValoOn33;
-            //valo.ValoOn66 = talovalo.ValoOn66;
-            //valo.ValoOn100 = talovalo.ValoOn100;
-            //valo.ValoOff = talovalo.ValoOff;
+            
 
             ViewBag.Huone = new SelectList((from tv in db.Valot select new { ValoId = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
-            //ViewBag.ValaisinTYpe = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "ValaisinType", null);
+            
 
             return View(valo);
         }
@@ -243,21 +219,15 @@ namespace SmartHouseWeb.Controllers
         public ActionResult Light66(ValoViewModel model)
         {
             Valot valo = db.Valot.Find(model.ValoId);
-            valo.Huone = model.Huone;
-            //valo.ValaisinType = model.ValaisinType;
-            //valo.Lamppu_ID = model.Lamppu_ID;
+            valo.Huone = model.Huone;            
             valo.Valo33 = false;
             valo.Valo66 = true;
             valo.Valo100 = false;
             valo.ValoTilaOff = false;
-            //valo.ValoOn33 = DateTime.Now;
-            //valo.ValoOn66 = DateTime.Now;
-            //valo.ValoOn100 = DateTime.Now;
-            //valo.ValoOff = DateTime.Now;
+            
 
             ViewBag.Huone = new SelectList((from tv in db.Valot select new { ValoId = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
-            //ViewBag.ValaisinTYpe = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "ValaisinType", null);
-
+            
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -278,17 +248,12 @@ namespace SmartHouseWeb.Controllers
 
             ValoViewModel valo = new ValoViewModel();
             valo.ValoId = talovalo.ValoId;
-            valo.Huone = talovalo.Huone;
-            //valo.ValaisinType = talovalo.ValaisinType;
-            //valo.Lamppu_ID = talovalo.Lamppu_ID;
+            valo.Huone = talovalo.Huone;            
             valo.Valo33 = false;
             valo.Valo66 = false;
             valo.Valo100 = true;
             valo.ValoTilaOff = false;
-            //valo.ValoOn33 = talovalo.ValoOn33;
-            //valo.ValoOn66 = talovalo.ValoOn66;
-            //valo.ValoOn100 = talovalo.ValoOn100;
-            //valo.ValoOff = talovalo.ValoOff;
+            
 
             ViewBag.Huone = new SelectList((from tv in db.Valot select new { ValoId = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
            // ViewBag.ValaisinTYpe = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "ValaisinType", null);
@@ -302,20 +267,15 @@ namespace SmartHouseWeb.Controllers
         public ActionResult Light100(ValoViewModel model)
         {
             Valot valo = db.Valot.Find(model.ValoId);
-            valo.Huone = model.Huone;
-            //valo.ValaisinType = model.ValaisinType;
-            //valo.Lamppu_ID = model.Lamppu_ID;
+            valo.Huone = model.Huone;            
             valo.Valo33 = false;
             valo.Valo66 = false;
             valo.Valo100 = true;
             valo.ValoTilaOff = false;
-            //valo.ValoOn33 = DateTime.Now;
-            //valo.ValoOn66 = DateTime.Now;
-            //valo.ValoOn100 = DateTime.Now;
-            //valo.ValoOff = DateTime.Now;
+            
 
             ViewBag.Huone = new SelectList((from tv in db.Valot select new { ValoId = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
-            //ViewBag.ValaisinTYpe = new SelectList((from tv in db.TaloValo select new { Valo_ID = tv.Valo_ID, Huone = tv.Huone }), "Valo_ID", "ValaisinType", null);
+            
 
             db.SaveChanges();
 

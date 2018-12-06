@@ -104,10 +104,8 @@ namespace SmartHouseWeb.Controllers
             }
 
             SaunaViewModel sauna = new SaunaViewModel();
-            sauna.SaunaId = taloSauna.SaunaId;
-            //sauna.SaunaNro = taloSauna.SaunaNro;
-            sauna.SaunaNimi = taloSauna.SaunaNimi;
-            //sauna.SaunaStart = taloSauna.SaunaStart;
+            sauna.SaunaId = taloSauna.SaunaId;            
+            sauna.SaunaNimi = taloSauna.SaunaNimi;            
             sauna.SaunanTila = true;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
@@ -120,10 +118,8 @@ namespace SmartHouseWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SaunaOn(SaunaViewModel model)
         {
-            Saunat sauna = db.Saunat.Find(model.SaunaId);
-            //sauna.SaunaNro = model.SaunaNro;
-            sauna.SaunaNimi = model.SaunaNimi;
-            //sauna.SaunaStart = DateTime.Now;
+            Saunat sauna = db.Saunat.Find(model.SaunaId);            
+            sauna.SaunaNimi = model.SaunaNimi;            
             sauna.SaunanTila = true;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
@@ -146,10 +142,8 @@ namespace SmartHouseWeb.Controllers
             }
 
             SaunaViewModel sauna = new SaunaViewModel();
-            sauna.SaunaId = taloSauna.SaunaId;
-            //sauna.SaunaNro = taloSauna.SaunaNro;
-            sauna.SaunaNimi = taloSauna.SaunaNimi;
-            //sauna.SaunaStop = taloSauna.SaunaStop;
+            sauna.SaunaId = taloSauna.SaunaId;            
+            sauna.SaunaNimi = taloSauna.SaunaNimi;            
             sauna.SaunanTila = false;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
@@ -162,10 +156,8 @@ namespace SmartHouseWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SaunaOff(SaunaViewModel model)
         {
-            Saunat sauna = db.Saunat.Find(model.SaunaId);
-            //sauna.SaunaNro = model.SaunaNro;
-            sauna.SaunaNimi = model.SaunaNimi;
-            //sauna.SaunaStop = DateTime.Now;
+            Saunat sauna = db.Saunat.Find(model.SaunaId);            
+            sauna.SaunaNimi = model.SaunaNimi;            
             sauna.SaunanTila = false;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
@@ -189,13 +181,10 @@ namespace SmartHouseWeb.Controllers
             }
 
             SaunaViewModel sauna = new SaunaViewModel();
-            sauna.SaunaId = taloSauna.SaunaId;
-            //sauna.SaunaNro = taloSauna.SaunaNro;
+            sauna.SaunaId = taloSauna.SaunaId;            
             sauna.SaunaNimi = taloSauna.SaunaNimi;
             sauna.SaunaTavoiteLampotila = taloSauna.SaunaTavoiteLampotila;
-            sauna.SaunaNykyLampotila = taloSauna.SaunaNykyLampotila;
-            //sauna.SaunaStart = taloSauna.SaunaStart.GetValueOrDefault();
-            //sauna.SaunaStop = taloSauna.SaunaStop.GetValueOrDefault();
+            sauna.SaunaNykyLampotila = taloSauna.SaunaNykyLampotila;            
             sauna.SaunanTila = taloSauna.SaunanTila;
 
             return View(sauna);
