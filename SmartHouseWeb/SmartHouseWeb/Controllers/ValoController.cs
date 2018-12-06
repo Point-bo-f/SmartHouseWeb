@@ -66,12 +66,21 @@ namespace SmartHouseWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Valot valot = db.Valot.Find(id);
-            if (valot == null)
+            Valot talovalo = db.Valot.Find(id);
+            if (talovalo == null)
             {
                 return HttpNotFound();
             }
-            return View(valot);
+
+            ValoViewModel valo = new ValoViewModel();
+            valo.ValoId = talovalo.ValoId;
+            valo.Huone = talovalo.Huone;
+            
+
+            ViewBag.Huone = new SelectList((from tv in db.Valot select new { Valo_ID = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
+           
+
+            return View(valo);
         }
 
         // POST: Valo/Edit/5
@@ -79,16 +88,21 @@ namespace SmartHouseWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ValoId,Huone,ValoOff,ValoOn33,ValoOn66,ValoOn100")] Valot valot)
+        public ActionResult Edit(ValoViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(valot).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(valot);
-        }
+            Valot valo = db.Valot.Find(model.ValoId);
+            //valo.Valo_ID = model.Valo_ID;
+            valo.Huone = model.Huone;
+            
+
+            ViewBag.Huone = new SelectList((from tv in db.Valot select new { ValoId = tv.ValoId, Huone = tv.Huone }), "ValoId", "Huone", null);
+           
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }//edit
+
 
         // GET: TaloValo/LightsOff/5
         public ActionResult LightsOff(int? id)
