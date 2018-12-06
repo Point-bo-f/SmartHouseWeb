@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SmartHouseWeb.Models;
+using SmartHouseWeb.ViewModels;
 
 namespace SmartHouseWeb.Controllers
 {
@@ -89,20 +90,117 @@ namespace SmartHouseWeb.Controllers
             return View(saunat);
         }
 
-        // GET: Sauna/Delete/5
+        // GET: TaloSauna/SaunaOn/5
+        public ActionResult SaunaOn(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Saunat taloSauna = db.Saunat.Find(id);
+            if (taloSauna == null)
+            {
+                return HttpNotFound();
+            }
+
+            SaunaViewModel sauna = new SaunaViewModel();
+            sauna.SaunaId = taloSauna.SaunaId;
+            //sauna.SaunaNro = taloSauna.SaunaNro;
+            sauna.SaunaNimi = taloSauna.SaunaNimi;
+            //sauna.SaunaStart = taloSauna.SaunaStart;
+            sauna.SaunanTila = true;
+
+            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
+
+            return View(sauna);
+        }
+
+        // POST: TaloSauna/SaunaOn/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaunaOn(SaunaViewModel model)
+        {
+            Saunat sauna = db.Saunat.Find(model.SaunaId);
+            //sauna.SaunaNro = model.SaunaNro;
+            sauna.SaunaNimi = model.SaunaNimi;
+            //sauna.SaunaStart = DateTime.Now;
+            sauna.SaunanTila = true;
+
+            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }//
+
+        // GET: TaloSauna/SaunaOff/5
+        public ActionResult SaunaOff(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Saunat taloSauna = db.Saunat.Find(id);
+            if (taloSauna == null)
+            {
+                return HttpNotFound();
+            }
+
+            SaunaViewModel sauna = new SaunaViewModel();
+            sauna.SaunaId = taloSauna.SaunaId;
+            //sauna.SaunaNro = taloSauna.SaunaNro;
+            sauna.SaunaNimi = taloSauna.SaunaNimi;
+            //sauna.SaunaStop = taloSauna.SaunaStop;
+            sauna.SaunanTila = false;
+
+            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
+
+            return View(sauna);
+        }
+
+        // POST: TaloSauna/SaunaOff/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaunaOff(SaunaViewModel model)
+        {
+            Saunat sauna = db.Saunat.Find(model.SaunaId);
+            //sauna.SaunaNro = model.SaunaNro;
+            sauna.SaunaNimi = model.SaunaNimi;
+            //sauna.SaunaStop = DateTime.Now;
+            sauna.SaunanTila = false;
+
+            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }//
+
+
+        // GET: TaloSauna/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Saunat saunat = db.Saunat.Find(id);
-            if (saunat == null)
+            Saunat taloSauna = db.Saunat.Find(id);
+            if (taloSauna == null)
             {
                 return HttpNotFound();
             }
-            return View(saunat);
+
+            SaunaViewModel sauna = new SaunaViewModel();
+            sauna.SaunaId = taloSauna.SaunaId;
+            //sauna.SaunaNro = taloSauna.SaunaNro;
+            sauna.SaunaNimi = taloSauna.SaunaNimi;
+            sauna.SaunaTavoiteLampotila = taloSauna.SaunaTavoiteLampotila;
+            sauna.SaunaNykyLampotila = taloSauna.SaunaNykyLampotila;
+            //sauna.SaunaStart = taloSauna.SaunaStart.GetValueOrDefault();
+            //sauna.SaunaStop = taloSauna.SaunaStop.GetValueOrDefault();
+            sauna.SaunanTila = taloSauna.SaunanTila;
+
+            return View(sauna);
         }
+        
 
         // POST: Sauna/Delete/5
         [HttpPost, ActionName("Delete")]

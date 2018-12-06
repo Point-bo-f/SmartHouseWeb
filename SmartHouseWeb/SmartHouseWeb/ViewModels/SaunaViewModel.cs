@@ -11,7 +11,7 @@ namespace SmartHouseWeb.ViewModels
         public string SaunaNimi { get; set; }
         public string SaunaTavoiteLampotila { get; set; }
         public string SaunaNykyLampotila { get; set; }
-        public bool SaunanTila { get; set; }
+        public bool? SaunanTila { get; set; }
 
     }
 }
