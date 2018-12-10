@@ -18,8 +18,30 @@ namespace SmartHouseWeb.Controllers
         // GET: Sauna
         public ActionResult Index()
         {
-            List<SaunaViewModel> model = new List<SaunaViewModel>
-            return View(db.Saunat.ToList());
+            List<SaunaViewModel> model = new List<SaunaViewModel>();
+            AlytaloEntities entities = new AlytaloEntities();
+            try
+            {
+                List<Saunat> saunat = entities.Saunat.ToList();
+                foreach (Saunat talosauna in saunat)
+                {
+                    SaunaViewModel sauna = new SaunaViewModel();
+                    sauna.SaunaId = talosauna.SaunaId;
+                    sauna.SaunaNimi = talosauna.SaunaNimi;
+                    sauna.SaunanTila = talosauna.SaunanTila;
+                    sauna.SaunaNykyLampotila = talosauna.SaunaNykyLampotila;
+                    sauna.SaunaTavoiteLampotila = talosauna.SaunaTavoiteLampotila;
+
+                    model.Add(sauna);
+                }
+            }
+
+            finally
+            {
+                entities.Dispose();
+            }
+            
+            return View(model);
         }
 
         // GET: Sauna/Details/5
@@ -64,7 +86,7 @@ namespace SmartHouseWeb.Controllers
 
             SaunaViewModel model = new SaunaViewModel();
 
-            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", null);
+            //ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", null);
 
             return View(model);
         }
@@ -76,16 +98,17 @@ namespace SmartHouseWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SaunaViewModel model)
         {
-            Saunat sauna = new Saunat();
-            sauna.SaunaId = model.SaunaId;            
+            AlytaloEntities db = new AlytaloEntities();
+
+            Saunat sauna = new Saunat();                      
             sauna.SaunaNimi = model.SaunaNimi;                           
             sauna.SaunaTavoiteLampotila = model.SaunaTavoiteLampotila;
             sauna.SaunaNykyLampotila = model.SaunaNykyLampotila;
-            //sauna.SaunanTila = model.SaunanTila;
+            sauna.SaunanTila = model.SaunanTila;
 
             db.Saunat.Add(sauna);
 
-            ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", null);
+            //ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", null);
 
             try
             {

@@ -243,6 +243,8 @@
     <Content Include="Views\Valo\Light66.cshtml" />
     <Content Include="Views\Valo\Light100.cshtml" />
     <Content Include="Views\Valo\LightsOff.cshtml" />
+    <Content Include="Views\Sauna\SaunaOn.cshtml" />
+    <Content Include="Views\Sauna\SaunaOff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
