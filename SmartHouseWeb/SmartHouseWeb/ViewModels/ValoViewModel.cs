@@ -9,10 +9,10 @@ namespace SmartHouseWeb.ViewModels
     {
         public int ValoId { get; set; }
         public string Huone { get; set; }
-        public bool ValoOff { get; set; }
-        public bool Valo33 { get; set; }
-        public bool Valo66 { get; set; }
-        public bool Valo100 { get; set; }
-        public bool ValoTilaOff { get;  set; }
+        public bool? ValoOff { get; set; }
+        public bool? ValoOn33 { get; set; }
+        public bool? ValoOn66 { get; set; }
+        public bool? ValoOn100 { get; set; }
+        public bool? ValoTilaOff { get;  set; }
     }
 }

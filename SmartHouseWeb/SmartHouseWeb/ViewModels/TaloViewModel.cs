@@ -9,9 +9,9 @@ namespace SmartHouseWeb.ViewModels
     {
         public int TaloId { get; set; }
         public string TaloNimi { get; set; }
-        public string TaloTavoiteLampo { get; set; }
-        public string TaloNykyLampo { get; set; }
-        public bool LampoOn { get; set; }
-        public bool LampoOff { get; set; }
+        public string TaloTavoiteLampotila { get; set; }
+        public string TaloNykyLampotila { get; set; }
+        public bool? LampoOn { get; set; }
+        public bool? LampoOff { get; set; }
     }
 }

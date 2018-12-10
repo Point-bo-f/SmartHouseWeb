@@ -18,6 +18,7 @@ namespace SmartHouseWeb.Controllers
         // GET: Sauna
         public ActionResult Index()
         {
+            List<SaunaViewModel> model = new List<SaunaViewModel>
             return View(db.Saunat.ToList());
         }
 

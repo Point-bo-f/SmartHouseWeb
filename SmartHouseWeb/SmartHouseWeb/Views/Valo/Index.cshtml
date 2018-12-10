@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmartHouseWeb.Models.Valot>
+﻿@model IEnumerable<SmartHouseWeb.ViewModels.ValoViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -47,9 +47,13 @@
             @Html.DisplayFor(modelItem => item.ValoOn100)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ValoId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ValoId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ValoId })
+            @Html.ActionLink("Off", "LightsOff", new { id = item.ValoId }) |
+            @Html.ActionLink("33", "Light33", new { id = item.ValoId }) |
+            @Html.ActionLink("66", "Light66", new { id = item.ValoId }) |
+            @Html.ActionLink("100", "Light100", new { id = item.ValoId }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.ValoId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ValoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ValoId })
         </td>
     </tr>
 }

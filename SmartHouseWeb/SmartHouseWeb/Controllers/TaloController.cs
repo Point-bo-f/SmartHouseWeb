@@ -19,7 +19,31 @@ namespace SmartHouseWeb.Controllers
         // GET: Talo
         public ActionResult Index()
         {
-            return View(db.Talot.ToList());
+            List<TaloViewModel> model = new List<TaloViewModel>();
+            AlytaloEntities entities = new AlytaloEntities();
+            try
+            {
+                List<Talot> lammot = entities.Talot.ToList();
+                foreach(Talot talolampo in lammot)
+                {
+                    TaloViewModel lampo = new TaloViewModel();
+                    lampo.TaloId = talolampo.TaloId;
+                    lampo.TaloNimi = talolampo.TaloNimi;
+                    lampo.TaloTavoiteLampotila = talolampo.TaloTavoiteLampotila;
+                    lampo.TaloNykyLampotila = talolampo.TaloNykyLampotila;
+                    lampo.LampoOff = talolampo.LampoOff;
+                    lampo.LampoOn = talolampo.LampoOn;
+
+                    model.Add(lampo);
+                }
+
+            }
+            finally
+            {
+                entities.Dispose();
+            }
+
+            return View(model);
         }
 
         // GET: Talo/Details/5
@@ -40,7 +64,10 @@ namespace SmartHouseWeb.Controllers
         // GET: Talo/Create
         public ActionResult Create()
         {
-            return View();
+            AlytaloEntities db = new AlytaloEntities();
+            TaloViewModel model = new TaloViewModel();
+
+            return View(model);
         }
 
         // POST: Talo/Create
@@ -48,16 +75,28 @@ namespace SmartHouseWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TaloId,TaloNimi,TaloTavoiteLampotila,TaloNykyLampotila,LampoOff,LampoOn")] Talot talot)
+        public ActionResult Create(TaloViewModel model) 
         {
-            if (ModelState.IsValid)
-            {
-                db.Talot.Add(talot);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            AlytaloEntities db = new AlytaloEntities();
+            Talot lampo = new Talot();
+            lampo.TaloNimi = model.TaloNimi;
+            lampo.TaloNykyLampotila = lampo.TaloNykyLampotila;
+            lampo.TaloTavoiteLampotila = lampo.TaloTavoiteLampotila;
+            lampo.LampoOff = lampo.LampoOff;
+            lampo.LampoOn = lampo.LampoOn;
+            
 
-            return View(talot);
+            db.Talot.Add(lampo);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: Talo/Edit/5
