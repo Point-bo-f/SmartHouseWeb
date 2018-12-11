@@ -198,6 +198,7 @@
     <Content Include="Models\SmartHouseWeb.edmx.diagram">
       <DependentUpon>SmartHouseWeb.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\alytalomobiili - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
