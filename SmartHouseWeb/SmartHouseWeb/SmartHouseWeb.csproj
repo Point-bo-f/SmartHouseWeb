@@ -226,17 +226,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Sauna\Create.cshtml" />
     <Content Include="Views\Sauna\Delete.cshtml" />
-    <Content Include="Views\Sauna\Details.cshtml" />
     <Content Include="Views\Sauna\Edit.cshtml" />
     <Content Include="Views\Sauna\Index.cshtml" />
     <Content Include="Views\Talo\Create.cshtml" />
     <Content Include="Views\Talo\Delete.cshtml" />
-    <Content Include="Views\Talo\Details.cshtml" />
     <Content Include="Views\Talo\Edit.cshtml" />
     <Content Include="Views\Talo\Index.cshtml" />
     <Content Include="Views\Valo\Create.cshtml" />
     <Content Include="Views\Valo\Delete.cshtml" />
-    <Content Include="Views\Valo\Details.cshtml" />
     <Content Include="Views\Valo\Edit.cshtml" />
     <Content Include="Views\Valo\Index.cshtml" />
     <Content Include="Views\Talo\LampoON.cshtml" />
