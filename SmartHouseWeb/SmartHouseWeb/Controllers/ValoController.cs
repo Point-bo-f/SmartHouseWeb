@@ -158,8 +158,7 @@ namespace SmartHouseWeb.Controllers
             }
 
             ValoViewModel valo = new ValoViewModel();
-            valo.ValoId = Valot.ValoId;
-            valo.Huone = Valot.Huone;            
+            valo.ValoId = Valot.ValoId;         
             valo.ValoOn33 = false;
             valo.ValoOn66 = false;
             valo.ValoOn100 = false;
@@ -175,7 +174,6 @@ namespace SmartHouseWeb.Controllers
         public ActionResult LightsOff(ValoViewModel model)
         {
             Valot valo = db.Valot.Find(model.ValoId);
-            valo.Huone = model.Huone;
             valo.ValoOff = true;
             valo.ValoOn33 = false;
             valo.ValoOn66 = false;
@@ -205,8 +203,7 @@ namespace SmartHouseWeb.Controllers
             }
 
             ValoViewModel valo = new ValoViewModel();
-            valo.ValoId = talovalo.ValoId;
-            valo.Huone = talovalo.Huone;            
+            valo.ValoId = talovalo.ValoId;            
             valo.ValoOn33 = true;
             valo.ValoOn66 = false;
             valo.ValoOn100 = false;
@@ -225,7 +222,6 @@ namespace SmartHouseWeb.Controllers
         public ActionResult Light33(ValoViewModel model)
         {
             Valot valo = db.Valot.Find(model.ValoId);
-            valo.Huone = model.Huone;
             valo.ValoOff = false;
             valo.ValoOn33 = true;
             valo.ValoOn66 = false;
@@ -255,8 +251,7 @@ namespace SmartHouseWeb.Controllers
             }
 
             ValoViewModel valo = new ValoViewModel();
-            valo.ValoId = talovalo.ValoId;
-            valo.Huone = talovalo.Huone;            
+            valo.ValoId = talovalo.ValoId;            
             valo.ValoOn33 = false;
             valo.ValoOn66 = true;
             valo.ValoOn100 = false;
@@ -274,8 +269,7 @@ namespace SmartHouseWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Light66(ValoViewModel model)
         {
-            Valot valo = db.Valot.Find(model.ValoId);
-            valo.Huone = model.Huone;            
+            Valot valo = db.Valot.Find(model.ValoId);            
             valo.ValoOn33 = false;
             valo.ValoOn66 = true;
             valo.ValoOn100 = false;
@@ -303,8 +297,7 @@ namespace SmartHouseWeb.Controllers
             }
 
             ValoViewModel valo = new ValoViewModel();
-            valo.ValoId = talovalo.ValoId;
-            valo.Huone = talovalo.Huone;            
+            valo.ValoId = talovalo.ValoId;            
             valo.ValoOn33 = false;
             valo.ValoOn66 = false;
             valo.ValoOn100 = true;
@@ -322,8 +315,7 @@ namespace SmartHouseWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Light100(ValoViewModel model)
         {
-            Valot valo = db.Valot.Find(model.ValoId);
-            valo.Huone = model.Huone;            
+            Valot valo = db.Valot.Find(model.ValoId);            
             valo.ValoOn33 = false;
             valo.ValoOn66 = false;
             valo.ValoOn100 = true;

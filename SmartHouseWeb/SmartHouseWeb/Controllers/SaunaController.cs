@@ -181,8 +181,7 @@ namespace SmartHouseWeb.Controllers
             }
 
             SaunaViewModel sauna = new SaunaViewModel();
-            sauna.SaunaId = taloSauna.SaunaId;            
-            sauna.SaunaNimi = taloSauna.SaunaNimi;            
+            sauna.SaunaId = taloSauna.SaunaId;                
             sauna.SaunanTila = true;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
@@ -196,7 +195,7 @@ namespace SmartHouseWeb.Controllers
         public ActionResult SaunaOn(SaunaViewModel model)
         {
             Saunat sauna = db.Saunat.Find(model.SaunaId);            
-            sauna.SaunaNimi = model.SaunaNimi;            
+            sauna.SaunaId = model.SaunaId;            
             sauna.SaunanTila = true;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
@@ -219,8 +218,7 @@ namespace SmartHouseWeb.Controllers
             }
 
             SaunaViewModel sauna = new SaunaViewModel();
-            sauna.SaunaId = taloSauna.SaunaId;            
-            sauna.SaunaNimi = taloSauna.SaunaNimi;            
+            sauna.SaunaId = taloSauna.SaunaId;              
             sauna.SaunanTila = false;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
@@ -234,7 +232,7 @@ namespace SmartHouseWeb.Controllers
         public ActionResult SaunaOff(SaunaViewModel model)
         {
             Saunat sauna = db.Saunat.Find(model.SaunaId);            
-            sauna.SaunaNimi = model.SaunaNimi;            
+            sauna.SaunaId = model.SaunaId;            
             sauna.SaunanTila = false;
 
             ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", sauna.SaunaId);
