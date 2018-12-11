@@ -83,7 +83,6 @@ namespace SmartHouseWeb.Controllers
         public ActionResult Create()
         {
             AlytaloEntities db = new AlytaloEntities();
-
             SaunaViewModel model = new SaunaViewModel();
 
             //ViewBag.SaunanNimi = new SelectList((from ts in db.Saunat select new { SaunaId = ts.SaunaId, SaunaNimi = ts.SaunaNimi }), "SaunaId", "SaunaNimi", null);
@@ -99,7 +98,6 @@ namespace SmartHouseWeb.Controllers
         public ActionResult Create(SaunaViewModel model)
         {
             AlytaloEntities db = new AlytaloEntities();
-
             Saunat sauna = new Saunat();                      
             sauna.SaunaNimi = model.SaunaNimi;                           
             sauna.SaunaTavoiteLampotila = model.SaunaTavoiteLampotila;
@@ -117,6 +115,7 @@ namespace SmartHouseWeb.Controllers
 
             catch (Exception ex)
             {
+
             }
 
             return RedirectToAction("Index");
