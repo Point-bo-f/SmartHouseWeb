@@ -5,6 +5,7 @@
 }
 
 <h2>Saunat</h2>
+<img src="~/Images/sauna.jpg" />
 <link href="~/Content/Site.css" rel="stylesheet" />
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -26,7 +27,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.SaunaNimi)
@@ -43,7 +44,7 @@
         <td>
             @Html.ActionLink("ON", "SaunaOn", new { id = item.SaunaId }) |
             @Html.ActionLink("OFF", "SaunaOff", new { id = item.SaunaId }) |
-            @Html.ActionLink("Edit", "Edit", new { id = item.SaunaId }) |           
+            @Html.ActionLink("Edit", "Edit", new { id = item.SaunaId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.SaunaId })
         </td>
     </tr>

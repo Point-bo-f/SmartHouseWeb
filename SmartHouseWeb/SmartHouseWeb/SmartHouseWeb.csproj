@@ -181,6 +181,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\iot-house-512.png" />
+    <Content Include="Images\sauna.jpg" />
+    <Content Include="Images\talo.jpg" />
+    <Content Include="Images\valo.jpg" />
     <Content Include="Models\SmartHouseWeb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SmartHouseWeb.Context.cs</LastGenOutput>

@@ -5,7 +5,8 @@
 }
 
 <h2>Valot</h2>
-<link href="~/Content/Site.css" rel="stylesheet" />
+<img src="~/Images/valo.jpg" />
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -29,7 +30,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Huone)
@@ -51,7 +52,7 @@
             @Html.ActionLink("33", "Light33", new { id = item.ValoId }) |
             @Html.ActionLink("66", "Light66", new { id = item.ValoId }) |
             @Html.ActionLink("100", "Light100", new { id = item.ValoId }) |
-            @Html.ActionLink("Edit", "Edit", new { id = item.ValoId }) |            
+            @Html.ActionLink("Edit", "Edit", new { id = item.ValoId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.ValoId })
         </td>
     </tr>
